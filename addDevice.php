@@ -1,5 +1,6 @@
 <?php
     include_once "sessionAuth.php";
+    include_once "adminCheck.php";
 ?>
 <html>
 <head>

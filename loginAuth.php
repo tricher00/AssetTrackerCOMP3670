@@ -7,7 +7,7 @@
     
     $_SESSION['email'] = $email;
         
-    $sql = "SELECT Salt, Password, HasLoggedIn FROM User WHERE Email = '$email';";
+    $sql = "SELECT Salt, Password, HasLoggedIn, PermissionLevel FROM User WHERE Email = '$email';";
         
     if(!$result = mysqli_query($conn, $sql)){
         echo mysqli_error($conn);
@@ -16,6 +16,7 @@
     
     if ($result->num_rows == 1){
         $row = $result->fetch_assoc();
+        $_SESSION['permLevel'] = $row['PermissionLevel'];
         $salt = $row['Salt'];
         $hashPass = $row['Password'];
         $hasLoggedIn = $row['HasLoggedIn'];

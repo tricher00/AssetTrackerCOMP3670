@@ -1,5 +1,4 @@
 <?php
-    //include "dbConnect.php";
     include_once "sessionAuth.php";    
     $email = $_SESSION['email'];
 ?>
