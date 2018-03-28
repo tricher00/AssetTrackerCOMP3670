@@ -3,7 +3,7 @@
 ?>
 <html>
 <head>
-<script src = "sessionAuth.php"></script>
+
 </head>
 <body>
     <form method='post' action='updatePassword.php'>

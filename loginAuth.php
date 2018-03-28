@@ -6,7 +6,6 @@
     $password = $_POST['password'];
     
     $_SESSION['email'] = $email;
-    $_SESSION['password'] = $password;
         
     $sql = "SELECT Salt, Password, HasLoggedIn FROM User WHERE Email = '$email';";
         
@@ -18,11 +17,12 @@
         $hashPass = $row['Password'];
         $hasLoggedIn = $row['HasLoggedIn'];
         $hashed = hash("sha256", $salt.$password);
+        $_SESSION['password'] = $hashed;
         if ($hashed == $hashPass){
             echo "Auth Successful!";
             if ($hasLoggedIn == 0){
                 mysqli_close($conn);
-                header("Location: changePassword.html");
+                header("Location: changePassword.php");
                 exit();
             }
         }

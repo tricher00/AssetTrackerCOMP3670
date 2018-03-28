@@ -26,6 +26,7 @@
                 }
                 else{
                     echo "Password updated";
+                    $_SESSION['password'] = $newPass;
                 }
             }
             else{
