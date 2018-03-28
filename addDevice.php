@@ -7,6 +7,7 @@
 
 </head>
 <body>
+    <?php include_once "navigation.php"; ?>
     <form method='post' action='insertDevice.php'>
         Id: <input type='text' name='id'><br/>
         Type: <input type='text' name='type'><br/>

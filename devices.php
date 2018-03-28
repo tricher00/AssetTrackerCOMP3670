@@ -7,6 +7,7 @@
 
 </head>
 <body>
+    <?php include_once "navigation.php"; ?>
     <table>
         <tr>
             <th>Id</th>

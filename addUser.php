@@ -1,11 +1,13 @@
 <?php
     include_once "sessionAuth.php";
+    include_once "adminCheck.php";
 ?>
 <html>
 <head>
 
 </head>
 <body>
+    <?php include_once "navigation.php"; ?>
     <form method='post' action='insertUser.php'>
         First Name: <input type='text' name='first'> Last Name: <input type='text' name='last'><br/>
         Email: <input type='email' name='email'> Phone: <input type='tel' name='phone'><br/>
