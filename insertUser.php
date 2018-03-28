@@ -19,7 +19,7 @@
     }
     
     if ($reportsTo == ""){
-        $reportsTo = "None";
+        $reportsTo = NULL;
     }
     else{
         $arr = preg_split('/\\s/', $reportsTo, -1);

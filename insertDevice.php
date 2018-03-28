@@ -7,7 +7,7 @@
     $assignedTo = $_POST['assignedTo'];
     
     if ($assignedTo == ""){
-        $assignedTo = "Inventory";
+        $assignedTo = NULL;
     }
     else{
         $arr = preg_split('/\\s/', $assignedTo, -1);

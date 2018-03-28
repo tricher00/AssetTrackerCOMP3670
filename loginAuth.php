@@ -28,6 +28,7 @@
         }
         else{
             echo "Email or Password is incorrect";
+            echo "<br/> $hashed<br/> $hashPass";
             session_destroy();
         }
     }

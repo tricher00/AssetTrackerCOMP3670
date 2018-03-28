@@ -6,9 +6,10 @@ CREATE TABLE `AssetTracker`.`User` (
  `Salt` VARCHAR(40) NOT NULL,
  `Phone` VARCHAR(40) NOT NULL ,
  `PermissionLevel` VARCHAR(40) NOT NULL ,
- `ReportsTo` VARCHAR(40) NOT NULL ,
+ `ReportsTo` VARCHAR(40) ,
  `HasLoggedIn` BOOLEAN NOT NULL DEFAULT FALSE ,
- PRIMARY KEY (Email)
+ PRIMARY KEY (Email),
+ FOREIGN KEY (ReportsTo) REFERENCES User(Email)
   ) 
 ENGINE = InnoDB;
 
@@ -16,8 +17,9 @@ CREATE TABLE `AssetTracker`.`Device` (
  `Id` VARCHAR(40) NOT NULL ,
  `Type` VARCHAR(40) NOT NULL ,
  `Description` VARCHAR(40) NOT NULL ,
- `AssignedTo` VARCHAR(40) NOT NULL ,
- PRIMARY KEY (ID)
+ `AssignedTo` VARCHAR(40) ,
+ PRIMARY KEY (ID),
+ FOREIGN KEY (AssignedTo) REFERENCES User(Email)
   ) 
 ENGINE = InnoDB;
 
@@ -28,6 +30,7 @@ CREATE TABLE `AssetTracker`.`Request` (
  `Description` VARCHAR(500) NOT NULL ,
  `NeededBy` Date NOT NULL,
  `Approved` BOOLEAN NOT NULL DEFAULT FALSE ,
- PRIMARY KEY (ID)
+ PRIMARY KEY (ID),
+ FOREIGN KEY (UserId) REFERENCES User(Email)
   ) 
 ENGINE = InnoDB;
