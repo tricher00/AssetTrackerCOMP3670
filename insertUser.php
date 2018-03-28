@@ -19,7 +19,7 @@
     }
     
     if ($reportsTo == ""){
-        $reportsTo = NULL;
+        $reportsTo = 'NULL';
     }
     else{
         $arr = preg_split('/\\s/', $reportsTo, -1);
@@ -28,7 +28,8 @@
         $result = mysqli_query($conn, $reportQuery);
         if ($result->num_rows != 0){
             $row = $result->fetch_assoc();
-            $reportsTo = $row['Email'];
+            $reportEmail = $row['Email'];
+            $reportsTo = "'$reportEmail'";
         }
         else{
             echo "Error!!!";
@@ -44,14 +45,14 @@
     }
     
     $cols = "FirstName, LastName, Email, Password, Salt, Phone, PermissionLevel, ReportsTo";
-    $vals = "'$first', '$last', '$email', '$hashed', '$salt', '$phone', '$perm', '$reportsTo'";
+    $vals = "'$first', '$last', '$email', '$hashed', '$salt', '$phone', '$perm', $reportsTo";
     
     $query = "INSERT INTO User ($cols) VALUES ($vals)";
     
     if ($result = mysqli_query($conn, $query) === TRUE) {
     echo "New record created successfully";
     } else {
-        //Error message
+        echo $conn->error;
     }
     
     mysqli_close($conn);

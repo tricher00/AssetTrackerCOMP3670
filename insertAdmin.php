@@ -10,7 +10,7 @@
     if ($conn->query($query) === TRUE) {
     echo "New record created successfully";
     } else {
-        echo "Error!!!";
+        echo $conn->error;
     }
     
 $conn->close();

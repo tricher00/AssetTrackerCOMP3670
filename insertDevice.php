@@ -7,7 +7,7 @@
     $assignedTo = $_POST['assignedTo'];
     
     if ($assignedTo == ""){
-        $assignedTo = NULL;
+        $assignedTo = 'NULL';
     }
     else{
         $arr = preg_split('/\\s/', $assignedTo, -1);
@@ -16,23 +16,24 @@
         $result = mysqli_query($conn, $assignQuery);
         if ($result->num_rows != 0){
             $row = $result->fetch_assoc();
-            $assignedTo = $row['Email'];
+            $assignEmail = $row['Email'];
+            $assignedTo = "'$assignEmail'";
         }
         else{
-            echo "Error!!!";
+            echo $conn->error;
             exit();
         }
     }
     
     $cols = "Id, Type, Description, AssignedTo";
-    $vals = "'$id', '$type', '$description', '$assignedTo'";
+    $vals = "'$id', '$type', '$description', $assignedTo";
     
     $query = "INSERT INTO Device ($cols) VALUES ($vals)";
     
     if ($result = mysqli_query($conn, $query) === TRUE) {
     echo "New record created successfully";
     } else {
-        //Error message
+        echo $conn->error;
     }
     
     mysqli_close($conn);
