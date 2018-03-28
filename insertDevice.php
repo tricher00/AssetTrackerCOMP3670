@@ -20,7 +20,7 @@
             $assignedTo = "'$assignEmail'";
         }
         else{
-            echo $conn->error;
+            echo mysqli_error($conn);
             exit();
         }
     }
@@ -31,9 +31,10 @@
     $query = "INSERT INTO Device ($cols) VALUES ($vals)";
     
     if ($result = mysqli_query($conn, $query) === TRUE) {
-    echo "New record created successfully";
+        echo "<script type='text/javascript'>alert(\"New device added!\"); window.location.href = 'devices.php';</script>";
+        exit();
     } else {
-        echo $conn->error;
+        echo mysqli_error($conn);
     }
     
     mysqli_close($conn);

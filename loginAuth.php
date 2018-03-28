@@ -9,7 +9,10 @@
         
     $sql = "SELECT Salt, Password, HasLoggedIn FROM User WHERE Email = '$email';";
         
-    $result = mysqli_query($conn, $sql);
+    if(!$result = mysqli_query($conn, $sql)){
+        echo mysqli_error($conn);
+        exit();
+    }
     
     if ($result->num_rows == 1){
         $row = $result->fetch_assoc();
@@ -19,10 +22,13 @@
         $hashed = hash("sha256", $salt.$password);
         $_SESSION['password'] = $hashed;
         if ($hashed == $hashPass){
-            echo "Auth Successful!";
             if ($hasLoggedIn == 0){
                 mysqli_close($conn);
                 header("Location: changePassword.php");
+                exit();
+            }
+            else{
+                header("Location: devices.php");
                 exit();
             }
         }
@@ -33,7 +39,7 @@
         }
     }
     else{
-        echo "Error!!!";
+        echo "Email or Password is incorrect";
         session_destroy();
     }
     

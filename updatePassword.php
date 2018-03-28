@@ -25,16 +25,19 @@
                     die('Could not update data: ' . mysqli_error($conn));
                 }
                 else{
-                    echo "Password updated";
                     $_SESSION['password'] = $newPass;
+                    echo "<script type='text/javascript'>alert(\"Password updated\"); window.location.href = 'devices.php';</script>";
+                    exit();
                 }
             }
             else{
-                echo "Passwords don't match";
+                echo "<script type='text/javascript'>alert(\"Passwords don't match\"); window.location.href = 'changePassword.php';</script>";
+                exit();
             }
         }
         else{
-            echo "Incorrect password";
+            echo "<script type='text/javascript'>alert(\"Password incorrect\"); window.location.href = 'changePassword.php';</script>";
+            exit();
         }
     }
     else{
