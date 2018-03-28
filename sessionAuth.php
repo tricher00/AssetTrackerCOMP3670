@@ -20,5 +20,8 @@
             header("Location: login.php");
         }
     }
+    else{
+        header("Location: login.php");
+    }
     
 ?>
