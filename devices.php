@@ -16,7 +16,17 @@
         </tr>
         <?php
             include "dbConnect.php";
-            $query = "SELECT * FROM Device WHERE assignedTo = '$email';";
+            $firstLastQuery = "SELECT FirstName, LastName FROM User Where Email = '$email';";
+            if(!$result = mysqli_query($conn, $firstLastQuery)){
+                mysqli_error($conn);
+                exit();
+            }
+            else{
+                $row = $result->fetch_assoc();
+                $first = $row['FirstName'];
+                $last = $row['LastName'];
+            }
+            $query = "SELECT * FROM Device WHERE AssignedTo = '$email';";
             if(!$result = mysqli_query($conn, $query)){
                 mysqli_error($conn);
                 exit();
@@ -30,7 +40,7 @@
                     echo "
                         <tr>
                             <td>$id</td>
-                            <td>$assignedTo</td>
+                            <td>$first $last</td>
                             <td>$type</td>
                             <td>$description</td>
                         </tr>
