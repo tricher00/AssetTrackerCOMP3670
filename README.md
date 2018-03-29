@@ -6,7 +6,7 @@ Since there isn't an easy way to share a MySQL database we need to all follow th
 First you need to clone the repo in your htdocs. Open cmd/terminal and navigate to /xampp/htdocs then enter `git clone https://github.com/tricher00/AssetTrackerCOMP3670`.
 Next open XAMPP and start both Apache and MySQL. Then open a browser and got localhost/phpmyadmin. Click "New" on the lefthand side and create a database named "assettracker".
 It should now appear in the list of databases on the left. Click on it and then click the SQL tab. You'll be taken to a page where you can run SQL queries.
-You should then open createTables.txt located in the root of the repo. In it is 3 SQL queries to create the needed tables. After running the queries your database should be set.
+You should then open createTables.txt located in the root of the repo. In it is a few SQL queries to create the needed tables and fill a couple of them. After running the queries your database should be set.
 In order to connect to your database check the crendentials in dbConnect.php and make sure they match your PHPMyAdmin credentials. The current credentials are the defaults.
 Now to access any page other than the login page you will need a account to login. **Do not** create an account via PHPMyAdmin. That account will not work.
 To create the initial admin account navigate to localhost/AssetTrackerCOMP3670/insertAdmin.php. You should see a page saying "New record created successfully".

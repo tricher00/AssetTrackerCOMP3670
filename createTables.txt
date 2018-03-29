@@ -1,3 +1,19 @@
+CREATE TABLE `AssetTracker`.`TicketStatus` (
+ `Status` VARCHAR(40) NOT NULL,
+ PRIMARY KEY(STATUS)
+ )
+ENGINE = InnoDB;
+
+INSERT INTO `AssetTracker`.`TicketStatus` (`Status`) VALUES ('Pending'),('In Progress'),('Completed'),('Rejected');
+
+CREATE TABLE `AssetTracker`.`PermissionLevel` (
+ `PermissionLevel` VARCHAR(40) NOT NULL,
+ PRIMARY KEY(PermissionLevel)
+ )
+ENGINE = InnoDB;
+
+INSERT INTO `AssetTracker`.`PermissionLevel` (`PermissionLevel`) VALUES ('standard'),('admin');
+
 CREATE TABLE `AssetTracker`.`User` (
  `FirstName` VARCHAR(40) NOT NULL ,
  `LastName` VARCHAR(40) NOT NULL ,
@@ -9,7 +25,8 @@ CREATE TABLE `AssetTracker`.`User` (
  `ReportsTo` VARCHAR(40) ,
  `HasLoggedIn` BOOLEAN NOT NULL DEFAULT FALSE ,
  PRIMARY KEY (Email),
- FOREIGN KEY (ReportsTo) REFERENCES User(Email)
+ FOREIGN KEY (ReportsTo) REFERENCES User(Email),
+ FOREIGN KEY (PermissionLevel) REFERENCES PermissionLevel(PermissionLevel)
   ) 
 ENGINE = InnoDB;
 
@@ -33,4 +50,15 @@ CREATE TABLE `AssetTracker`.`Request` (
  PRIMARY KEY (ID),
  FOREIGN KEY (UserId) REFERENCES User(Email)
   ) 
+ENGINE = InnoDB;
+
+CREATE TABLE `AssetTracker`.`Ticket` (
+ `Id` INTEGER NOT NULL AUTO_INCREMENT,
+ `Submitter` VARCHAR(40) NOT NULL,
+ `DateSubmitted` Date NOT NULL,
+ `Device` VARCHAR(40),
+ `Status` VARCHAR(40) NOT NULL,
+ PRIMARY KEY(ID),
+ FOREIGN KEY (Status) REFERENCES TicketStatus(Status)
+ )
 ENGINE = InnoDB;
