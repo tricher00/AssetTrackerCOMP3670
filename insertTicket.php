@@ -18,7 +18,6 @@
     $vals = "'$user', '$date', $device, '$comments', 'Pending'";
     
     $query = "INSERT INTO Ticket ($cols) VALUES ($vals)";
-    echo $query;
     
     if ($result = mysqli_query($conn, $query) === TRUE) {
         echo "<script type='text/javascript'>alert(\"Ticket submitted!\"); window.location.href = 'devices.php';</script>";
