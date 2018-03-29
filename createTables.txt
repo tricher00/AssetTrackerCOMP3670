@@ -44,7 +44,8 @@ CREATE TABLE `AssetTracker`.`Request` (
  `Id` INTEGER NOT NULL AUTO_INCREMENT,
  `UserId` VARCHAR(40) NOT NULL ,
  `DeviceType` VARCHAR(40) NOT NULL ,
- `Description` VARCHAR(500) NOT NULL ,
+ `Description` VARCHAR(40) NOT NULL ,
+ `Comments` VARCHAR(500) NOT NULL ,
  `NeededBy` Date NOT NULL,
  `Approved` BOOLEAN NOT NULL DEFAULT FALSE ,
  PRIMARY KEY (ID),
@@ -57,6 +58,7 @@ CREATE TABLE `AssetTracker`.`Ticket` (
  `Submitter` VARCHAR(40) NOT NULL,
  `DateSubmitted` Date NOT NULL,
  `Device` VARCHAR(40),
+ `Comments` VARCHAR(500) NOT NULL,
  `Status` VARCHAR(40) NOT NULL,
  PRIMARY KEY(ID),
  FOREIGN KEY (Status) REFERENCES TicketStatus(Status)
