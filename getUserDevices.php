@@ -34,6 +34,7 @@
             $device->description = $row['Description'];
             $device->assignedFirst = $first;
             $device->assignedLast = $last;
+            $device->assignedEmail = $email;
             array_push($deviceArr, $device);
         }
         return $deviceArr;
