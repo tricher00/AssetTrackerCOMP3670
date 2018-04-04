@@ -4,10 +4,18 @@
 ?>
 <html>
 <head>
-
+    <link rel="stylesheet" href="CSSmain.css">
 </head>
 <body>
-    <?php include_once "navigation.php";?>
+    <?php
+        $perm = $_SESSION['permLevel'];
+        if ($perm == 'admin'){
+            include_once "adminNav.php";
+        }
+        else{
+            include_once "navigation.php";
+        }
+    ?>
     <form method='post' action='insertTicket.php'>
         <?php
             include "dbConnect.php";

@@ -1,5 +1,5 @@
 <?php
-    include "dbConnect.php";
+    include "utils.php";
     
     $first = $_POST['first'];
     $last = $_POST['last'];
@@ -18,24 +18,9 @@
         $hashed = hash("sha256", $salt.$password);
     }
     
-    if ($reportsTo == ""){
-        $reportsTo = 'NULL';
-    }
-    else{
-        $arr = preg_split('/\\s/', $reportsTo, -1);
-        $reportFirst = $arr[0]; $reportLast = $arr[1];
-        $reportQuery = "SELECT Email FROM User WHERE FirstName = '$reportFirst' AND LastName = '$reportLast'";
-        $result = mysqli_query($conn, $reportQuery);
-        if ($result->num_rows != 0){
-            $row = $result->fetch_assoc();
-            $reportEmail = $row['Email'];
-            $reportsTo = "'$reportEmail'";
-        }
-        else{
-            echo mysqli_error($conn);
-            mysqli_close($conn);
-            exit();
-        }
+    $reportsTo = getEmail($reportsTo);
+    if ($reportsTo != 'NULL'){
+        $reportsTo = "'$reportsTo'";
     }
     
     if (isset($_POST['admin'])){
@@ -45,11 +30,12 @@
         $perm = "standard";
     }
     
+    include "dbConnect.php";
     $cols = "FirstName, LastName, Email, Password, Salt, Phone, PermissionLevel, ReportsTo";
     $vals = "'$first', '$last', '$email', '$hashed', '$salt', '$phone', '$perm', $reportsTo";
     
     $query = "INSERT INTO User ($cols) VALUES ($vals)";
-    
+        
     if ($result = mysqli_query($conn, $query) === TRUE) {
         echo "<script type='text/javascript'>alert(\"New user added!\"); window.location.href = 'devices.php';</script>";
         exit();

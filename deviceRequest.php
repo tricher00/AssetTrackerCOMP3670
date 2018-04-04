@@ -3,10 +3,18 @@
 ?>
 <html>
 <head>
-
+    <link rel="stylesheet" href="CSSmain.css">
 </head>
 <body>
-    <?php include_once "navigation.php"; ?>
+    <?php
+        $perm = $_SESSION['permLevel'];
+        if ($perm == 'admin'){
+            include_once "adminNav.php";
+        }
+        else{
+            include_once "navigation.php";
+        }
+    ?>
     <form method='post' action='insertRequest.php'>
         Type: <input type='text' name='type'><br/>
         Description: <input type='text' name='description'><br/>

@@ -4,10 +4,18 @@
 ?>
 <html>
 <head>
-
+    <link rel="stylesheet" href="CSSmain.css">
 </head>
 <body>
-    <?php include_once "navigation.php"; ?>
+    <?php
+        $perm = $_SESSION['permLevel'];
+        if ($perm == 'admin'){
+            include_once "adminNav.php";
+        }
+        else{
+            include_once "navigation.php";
+        }
+    ?>
     <table>
         <tr>
             <th>Id</th>
@@ -17,39 +25,76 @@
         </tr>
         <?php
             include "dbConnect.php";
-            $firstLastQuery = "SELECT FirstName, LastName FROM User Where Email = '$email';";
-            if(!$result = mysqli_query($conn, $firstLastQuery)){
-                mysqli_error($conn);
-                exit();
-            }
-            else{
-                $row = $result->fetch_assoc();
-                $first = $row['FirstName'];
-                $last = $row['LastName'];
-            }
-            $query = "SELECT * FROM Device WHERE AssignedTo = '$email';";
-            if(!$result = mysqli_query($conn, $query)){
-                mysqli_error($conn);
-                exit();
-            }
-            if ($result->num_rows != 0){
+            include "utils.php";
+            
+            if ($perm == 'admin'){
+                $query = "SELECT * FROM Device;";
+                if(!$result = mysqli_query($conn, $query)){
+                    echo mysqli_error($conn);
+                    exit();
+                }
                 while($row = $result->fetch_assoc()){
                     $id = $row['Id'];
-                    $assignedTo = $row['AssignedTo'];
+                    $user = $row['AssignedTo'];
                     $type = $row['Type'];
                     $description = $row['Description'];
-                    echo "
-                        <tr>
-                            <td>$id</td>
-                            <td>$first $last</td>
-                            <td>$type</td>
-                            <td>$description</td>
-                        </tr>
-                    ";
+                    if ($user == ''){
+                        $first = 'Inventory';
+                        $last = '';
+                    }
+                    else{
+                        $nameQuery = "SELECT FirstName, LastName FROM User WHERE Email = '$user'";
+                        if(!$nameResult = mysqli_query($conn, $nameQuery)){
+                            echo mysqli_error($conn);
+                            exit();
+                        }
+                        $nameRow = $nameResult->fetch_assoc();
+                        $first = $nameRow['FirstName'];
+                        $last = $nameRow['LastName'];
+                    }
+                    echo"
+                            <tr>
+                                <td>$id</td>
+                                <td>$first $last</td>
+                                <td>$type</td>
+                                <td>$description</td>
+                            </tr>
+                        ";
                 }
             }
             else{
-                echo "<td colspan = 4>You have no assigned devices!</td>";
+                $deviceArr = array();
+                $arr = getDevices($email);
+                foreach ($arr as $x){
+                    array_push($deviceArr, $x);
+                }
+                $query = "SELECT Email FROM User WHERE ReportsTo = '$email'";
+                if(!$result = mysqli_query($conn, $query)){
+                    echo mysqli_error($conn);
+                    exit();
+                }
+                while($row = $result->fetch_assoc()){
+                    $userEmail = $row['Email'];
+                    $arr = getDevices($userEmail);
+                    foreach ($arr as $x){
+                        array_push($deviceArr, $x);
+                    }
+                }
+                if (count($deviceArr) != 0){
+                    foreach ($deviceArr as $device){
+                        echo"
+                            <tr>
+                                <td>$device->id</td>
+                                <td>$device->assignedFirst $device->assignedLast</td>
+                                <td>$device->type</td>
+                                <td>$device->description</td>
+                            </tr>
+                        ";
+                    }
+                }
+                else{
+                    echo "<td colspan = 4>No devices to show!</td>";
+                }
             }
             mysqli_close($conn);
         ?>

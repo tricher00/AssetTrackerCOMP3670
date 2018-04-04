@@ -19,7 +19,7 @@ CREATE TABLE `AssetTracker`.`User` (
  `LastName` VARCHAR(40) NOT NULL ,
  `Email` VARCHAR(40) NOT NULL ,
  `Password` VARCHAR(64) NOT NULL,
- `Salt` VARCHAR(40) NOT NULL,
+ `Salt` VARCHAR(256) NOT NULL,
  `Phone` VARCHAR(40) NOT NULL ,
  `PermissionLevel` VARCHAR(40) NOT NULL ,
  `ReportsTo` VARCHAR(40) ,
