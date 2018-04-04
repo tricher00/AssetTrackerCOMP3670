@@ -116,11 +116,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="loginAuth.php" method="post">
+  <form class="modal-content animate" action="updatePassword.php" method="post">
 
     <div class="container">
       <label for="old"><b>Old Password</b></label>
-      <input type="text" placeholder="Enter Username" name="old" required>
+      <input type="password" placeholder="Enter Username" name="old" required>
 
       <label for="new"><b>New Password</b></label>
       <input type="password" placeholder="Enter Password" name="new" required>
