@@ -11,6 +11,7 @@
         $perm = $_SESSION['permLevel'];
         if ($perm == 'admin'){
             include_once "adminNav.php";
+            echo "<a href = 'editDevices.php'><div id='editDevices'>Edit Devices</div></a><br/>";
         }
         else{
             include_once "navigation.php";

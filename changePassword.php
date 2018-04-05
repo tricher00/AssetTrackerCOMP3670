@@ -120,13 +120,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
     <div class="container">
       <label for="old"><b>Old Password</b></label>
-      <input type="password" placeholder="Enter Username" name="old" required>
+      <input type="password" placeholder="Enter Old Password" name="old" required>
 
       <label for="new"><b>New Password</b></label>
       <input type="password" placeholder="Enter Password" name="new" required>
         
       <label for="reEnter"><b>Confirm New Password</b></label>
-      <input type="password" placeholder="Enter Password" name="reEnter" required>
+      <input type="password" placeholder="Re-Enter Password" name="reEnter" required>
         
       <button type="submit">Change Password</button>
     </div>
@@ -141,7 +141,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 var modal = document.getElementById('id01');
 
-window.onclick = function(event) {
+window.onload = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }

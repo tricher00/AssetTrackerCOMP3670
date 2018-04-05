@@ -147,25 +147,20 @@
     }
     
     function getEmail($name){
-        if ($name == "None" or $name = "" or $name = "Inventory"){
-            return 'NULL';
+        include "dbConnect.php";
+        $arr = preg_split('/\\s/', $name, -1);
+        $first = $arr[0]; $last = $arr[1];
+        $reportQuery = "SELECT Email FROM User WHERE FirstName = '$first' AND LastName = '$last'";
+        $result = mysqli_query($conn, $reportQuery);
+        if ($result->num_rows == 1){
+            $row = $result->fetch_assoc();
+            mysqli_close($conn);
+            return $row['Email'];
         }
         else{
-            include "dbConnect.php";
-            $arr = preg_split('/\\s/', $name, -1);
-            $first = $arr[0]; $last = $arr[1];
-            $reportQuery = "SELECT Email FROM User WHERE FirstName = '$first' AND LastName = '$last'";
-            $result = mysqli_query($conn, $reportQuery);
-            if ($result->num_rows == 1){
-                $row = $result->fetch_assoc();
-                mysqli_close($conn);
-                return $row['Email'];
-            }
-            else{
-                echo mysqli_error($conn);
-                mysqli_close($conn);
-                exit();
-            }
+            mysqli_close($conn);
+            return 'NULL';
+            exit();
         }
     }
 ?>

@@ -14,7 +14,7 @@
         Description: <input type='text' name='description' id="required"><br/>
         Assigned To: <input list="assignedTo" name = "assignedTo" id="required"><br/>
         <datalist id ="assignedTo">
-            <option selected value='Inventory'>
+            <option value='Inventory'>
             <?php
                 include "dbConnect.php";
                 $query = "SELECT FirstName, LastName FROM User WHERE email != 'sample@test.com';";

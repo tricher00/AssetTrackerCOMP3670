@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "wit123";
 $db = "assettracker";
 
 // Create connection
