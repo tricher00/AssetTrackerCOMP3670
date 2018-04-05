@@ -94,8 +94,25 @@
     margin:0 auto;
 }
 
+.incomplete {
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: #ff3333;
+    color: white;
+}
+
 #navButton {
     padding: 10px;
+}
+
+#editDevices {
+    width:100px; 
+    height:35px; 
+    background:blue; 
+    padding-top:50px;
+    background-clip: content-box; 
+    text-align: center; 
+    color: white;
 }
 
 body{
