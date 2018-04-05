@@ -9,10 +9,10 @@
 <body>
     <?php include_once "adminNav.php"; ?>
     <form method='post' action='insertDevice.php'>
-        Id: <input type='text' name='id'><br/>
-        Type: <input type='text' name='type'><br/>
-        Description: <input type='text' name='description'><br/>
-        Assigned To: <input list="assignedTo" name = "assignedTo"><br/>
+        Id: <input type='text' name='id' id="required"><br/>
+        Type: <input type='text' name='type' id="required"><br/>
+        Description: <input type='text' name='description' id="required"><br/>
+        Assigned To: <input list="assignedTo" name = "assignedTo" id="required"><br/>
         <datalist id ="assignedTo">
             <option selected value='Inventory'>
             <?php

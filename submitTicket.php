@@ -34,7 +34,7 @@
             mysqli_close($conn);
         ?>
         Comments:<br/>
-        <textarea name='comments'></textarea><br/>
+        <textarea name='comments' id="required"></textarea><br/>
         <input type ='submit'>
     </form>
 </body>
