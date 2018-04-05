@@ -4,18 +4,10 @@
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="CSSmain.css">
+    <script type="text/javascript" src="validator.js"></script>
 </head>
 <body>
-    <?php
-        $perm = $_SESSION['permLevel'];
-        if ($perm == 'admin'){
-            include_once "adminNav.php";
-        }
-        else{
-            include_once "navigation.php";
-        }
-    ?>
+    <?php include_once "navigation.php";?>
     <form method='post' action='insertTicket.php'>
         <?php
             include "dbConnect.php";

@@ -1,75 +1,55 @@
 .devices {
-    background: url("images/devicesA.png") no-repeat;
+    background: url("devicesA.png") no-repeat;
   	width: 170px;
     height: 50px;
     float:left;
 }
 .devices:hover {
-    background: url("images/devicesB.png") no-repeat;
+    background: url("devicesB.png") no-repeat;
 }
 
 .requestDevice {
-    background: url("images/requestA.png") no-repeat;
+    background: url("requestA.png") no-repeat;
   	width: 170px;
     height: 50px;
     float:left;
 }
 .requestDevice:hover {
-    background: url("images/requestB.png") no-repeat;
+    background: url("requestB.png") no-repeat;
 }
 
 .submit {
-    background: url("images/submitA.png") no-repeat;
+    background: url("submitA.png") no-repeat;
   	width: 170px;
     height: 50px;
     float:left;
 }
 .submit:hover {
-    background: url("images/submitB.png") no-repeat;
-}
-
-.requests {
-    background: url("images/requestsA.png") no-repeat;
-  	width: 170px;
-    height: 50px;
-    float:left;
-}
-.requests:hover {
-    background: url("images/requestsB.png") no-repeat;
-}
-
-.tickets {
-    background: url("images/ticketsA.png") no-repeat;
-  	width: 170px;
-    height: 50px;
-    float:left;
-}
-.tickets:hover {
-    background: url("images/ticketsB.png") no-repeat;
+    background: url("submitB.png") no-repeat;
 }
 
 .addUser {
-    background: url("images/userA.png") no-repeat;
+    background: url("userA.png") no-repeat;
   	width: 170px;
     height: 50px;
     float:left;
 }
 .addUser:hover {
-    background: url("images/userB.png") no-repeat;
+    background: url("userB.png") no-repeat;
 }
 
 .addDev {
-    background: url("images/addDevA.png") no-repeat;
+    background: url("addDevA.png") no-repeat;
   	width: 170px;
     height: 50px;
     float:left;
 }
 .addDev:hover {
-    background: url("images/addDevB.png") no-repeat;
+    background: url("addDevB.png") no-repeat;
 }
 
 .logout {
-    background: url("images/logoutA.png") no-repeat;
+    background: url("logoutA.png") no-repeat;
   	width: 170px;
     height: 50px;
 
@@ -77,30 +57,23 @@
     float:left;
 }
 .logout:hover {
-    background: url("images/logoutB.png") no-repeat;
+    background: url("logoutB.png") no-repeat;
 }
 
-.navBar {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width:1140px; 
+
+.container {
+    width:1020px; 
     margin:0 auto;
-}
-
-.adminNavBar {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width:1520px; 
-    margin:0 auto;
-}
-
-#navButton {
-    padding: 10px;
 }
 
 body{
-    background-image: url("images/background.png");
+    background-image: url(background2.png);
     background-repeat: repeat-x;
-    width:1520px; 
-    margin:0 auto;
+}
+
+.incomplete {
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: #ff3333;
+    color: white;
 }

@@ -4,30 +4,15 @@
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="CSSmain.css">
+    <script type="text/javascript" src="validator.js"></script>
 </head>
 <body>
-    <?php include_once "adminNav.php"; ?>
+    <?php include_once "navigation.php"; ?>
     <form method='post' action='insertDevice.php'>
-        Id: <input type='text' name='id'><br/>
-        Type: <input type='text' name='type'><br/>
-        Description: <input type='text' name='description'><br/>
-        Assigned To: <input list="assignedTo" name = "assignedTo"><br/>
-        <datalist id ="assignedTo">
-            <option selected value='Inventory'>
-            <?php
-                include "dbConnect.php";
-                $query = "SELECT FirstName, LastName FROM User WHERE email != 'sample@test.com';";
-                if(!$result = mysqli_query($conn, $query)){
-                    mysqli_error($conn);
-                    exit();
-                }
-                while($row = $result->fetch_assoc()){
-                    $fullName = $row['FirstName']." ".$row["LastName"];
-                    echo "<option value = '$fullName'>";
-                }
-            ?>
-        </datalist>
+        ID: <input type='text' name='id' id = "required"><br/>
+        Type: <input type='text' name='type' id = "required"><br/>
+        Description: <input type='text' name='description' id = "required"><br/>
+        Assigned To: <input type="text" name="assignedTo" id = "required"><br/>
         <input type ='submit'>
     </form>
 </body>
