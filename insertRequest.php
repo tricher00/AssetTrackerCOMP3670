@@ -18,8 +18,8 @@
         if ($result = mysqli_query($conn, $reportQuery)) {
             $row = $result->fetch_assoc();
             $reportsTo = $row['ReportsTo'];
-            echo $reportsTo;
-            if ($reportsTo = 'NULL'){
+            
+            if ($reportsTo = ''){
                 $idQuery = "SELECT MAX(Id) FROM Request WHERE UserId = '$user'";
                 if ($result = mysqli_query($conn, $idQuery)) {
                     $row = $result->fetch_assoc();

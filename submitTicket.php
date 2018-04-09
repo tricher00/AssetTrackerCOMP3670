@@ -17,24 +17,39 @@
         }
     ?>
     <form method='post' action='insertTicket.php'>
-        <?php
-            include "dbConnect.php";
-            $query = "SELECT Id, Type, Description FROM Device WHERE AssignedTo = '$email';";
-            if(!$result = mysqli_query($conn, $query)){
-                mysqli_error($conn);
-                exit();
-            }
-            while($row = $result->fetch_assoc()){
-                $id = $row['Id'];
-                $type = $row['Type'];
-                $description = $row['Description'];
-                echo "<input type='radio' name='device' value='$id'>$type: $description<br/>";
-            }
-            echo "<input type='radio' name='device' value=''>Other<br/>";
-            mysqli_close($conn);
-        ?>
-        Comments:<br/>
-        <textarea name='comments' id="required"></textarea><br/>
-        <input type ='submit'>
+        <table>
+            <tr>
+                <td>Select Device:</td>
+                <td>
+                    <select name = 'device'>
+                    <?php
+                        include "dbConnect.php";
+                        $query = "SELECT Id, Type, Description FROM Device WHERE AssignedTo = '$email';";
+                        if(!$result = mysqli_query($conn, $query)){
+                            mysqli_error($conn);
+                            exit();
+                        }
+                        while($row = $result->fetch_assoc()){
+                            $id = $row['Id'];
+                            $type = $row['Type'];
+                            $description = $row['Description'];
+                            echo "<option value='$id'>$type: $description</option>";
+                        }
+                        echo "<option value=''>Other</option>";
+                        mysqli_close($conn);
+                    ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Comments:</td>
+                <td><textarea name='comments' class="required"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan = 2 style="text-align:right">
+                    <input type ='submit'>
+                </td>
+            </tr>
+        </table>
     </form>
 </body>

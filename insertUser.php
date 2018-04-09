@@ -10,7 +10,7 @@
     $reportsTo = $_POST['reportsTo'];
     
     if ($password != $reEnter){
-        echo "Passwords don't match";
+        echo "<script type='text/javascript'>alert(\"Passwords don't match\"); window.location.href = 'addUser.php';</script>";
         exit();
     }
     else{
@@ -18,7 +18,6 @@
         $hashed = hash("sha256", $salt.$password);
     }
     
-    $reportsTo = getEmail($reportsTo);
     if ($reportsTo != 'NULL'){
         $reportsTo = "'$reportsTo'";
     }

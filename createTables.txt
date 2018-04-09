@@ -1,3 +1,5 @@
+CREATE DATABASE AssetTracker;
+
 CREATE TABLE `AssetTracker`.`TicketStatus` (
  `Status` VARCHAR(40) NOT NULL,
  PRIMARY KEY(STATUS)

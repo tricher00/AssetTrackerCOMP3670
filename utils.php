@@ -85,6 +85,7 @@
             $req->type = $row['DeviceType'];
             $req->description = $row['Description'];
             $req->neededBy = $row['NeededBy'];
+            $req->comments = $row['Comments'];
             $req->approved = $row['Approved'];
             $req->submitFirst = $first;
             $req->submitLast = $last;
@@ -115,7 +116,7 @@
         }
         while($row = $result->fetch_assoc()){
             $device = $row['Device'];
-            if ($device == 'NULL'){
+            if ($device == ''){
                 $device = "Other";
                 $devType = "Other";
                 $devDescription = "Other";

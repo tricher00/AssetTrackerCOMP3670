@@ -11,18 +11,18 @@
         $perm = $_SESSION['permLevel'];
         if ($perm == 'admin'){
             include_once "adminNav.php";
-            echo "<a href = 'editDevices.php'><div id='editDevices'>Edit Devices</div></a><br/>";
         }
         else{
             include_once "navigation.php";
         }
     ?>
-    <table>
+    <table class = 'tables'>
         <tr>
             <th>Id</th>
             <th>Assigned To</th>
             <th>Type</th>
             <th>Description</th>
+            <th colspan = 2/>
         </tr>
         <?php
             include "dbConnect.php";
@@ -59,6 +59,8 @@
                                 <td>$first $last</td>
                                 <td>$type</td>
                                 <td>$description</td>
+                                <td><button onclick='location.href=\"editDevice.php?id=$id\"' type='button'>Edit Device</button></td>
+                                <td><button onclick='location.href=\"deleteDevice.php?id=$id\"' type='button'>Delete Device</button></td>
                             </tr>
                         ";
                 }
@@ -89,6 +91,7 @@
                                 <td>$device->assignedFirst $device->assignedLast</td>
                                 <td>$device->type</td>
                                 <td>$device->description</td>
+                                <td colspan = 2/>
                             </tr>
                         ";
                     }

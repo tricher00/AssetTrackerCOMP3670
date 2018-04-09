@@ -81,38 +81,40 @@
 }
 
 .navBar {
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
     width:1140px; 
     margin:0 auto;
 }
 
 .adminNavBar {
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
     width:1520px; 
     margin:0 auto;
 }
 
-.incomplete {
+#incomplete {
     border: 2px solid red;
     border-radius: 4px;
-    background-color: #ff3333;
-    color: white;
 }
 
 #navButton {
     padding: 10px;
 }
 
-#editDevices {
-    width:100px; 
-    height:35px; 
-    background:blue; 
-    padding-top:50px;
-    background-clip: content-box; 
-    text-align: center; 
-    color: white;   
+#deviceTable{
+    text-align: left;
+    padding-top: 15px;
+    margin: 0 auto; 
+    width:1000px;
+}
+
+.tables{
+    text-align: left;
+    padding-top: 15px;
+    margin: 0 auto; 
+    width:1000px;
 }
 
 body{
@@ -120,4 +122,11 @@ body{
     background-repeat: repeat-x;
     width:1520px; 
     margin:0 auto;
+}
+
+form {
+    padding-top: 15px;
+    text-align: center;
+    margin: 0 auto; 
+    width:600px;
 }

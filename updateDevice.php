@@ -6,18 +6,19 @@
     $type = $_POST['type'];
     $description = $_POST['description'];
     $assignedTo = $_POST['assignedTo'];
+    $assignedTo = getEmail($assignedTo);
     
-    if ($assignedTo != 'NULL'){
+    if ($assignedTo == ''){
+        $assignedTo = 'NULL';
+    }
+    else{
         $assignedTo = "'$assignedTo'";
     }
     
-    $cols = "Id, Type, Description, AssignedTo";
-    $vals = "'$id', '$type', '$description', $assignedTo";
-    
-    $query = "INSERT INTO Device ($cols) VALUES ($vals)";
+    $query = "UPDATE Device SET Type = '$type', Description = '$description', AssignedTo = $assignedTo WHERE Id = '$id';";
     
     if ($result = mysqli_query($conn, $query) === TRUE) {
-        echo "<script type='text/javascript'>alert(\"New device added!\"); window.location.href = 'devices.php';</script>";
+        echo "<script type='text/javascript'>alert(\"Device Updated!\"); window.location.href = '';</script>";
         exit();
     } else {
         echo mysqli_error($conn);

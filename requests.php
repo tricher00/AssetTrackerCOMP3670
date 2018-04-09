@@ -8,13 +8,22 @@
     <link rel="stylesheet" href="CSSmain.css">
 </head>
 <body>
-    <?php include_once "navigation.php"; ?>
-    <table>
+    <?php
+        $perm = $_SESSION['permLevel'];
+        if ($perm == 'admin'){
+            include_once "adminNav.php";
+        }
+        else{
+            include_once "navigation.php";
+        }
+    ?>
+    <table class = "tables">
         <tr>
             <th>Request Id</th>
             <th>Submitter</th>
             <th>Type</th>
             <th>Description</th>
+            <th>Comments</th>
             <th>Needed By</th>
             <th colspan = 2>Status</th>
         </tr>
@@ -41,6 +50,7 @@
                             <td>$request->submitFirst $request->submitLast</td>
                             <td>$request->type</td>
                             <td>$request->description</td>
+                            <td>$request->comments</td>
                             <td>$request->neededBy</td>
                             <td colspan= 2>$status</td>
                         </tr>
@@ -71,6 +81,7 @@
                                 <td>$request->submitFirst $request->submitLast</td>
                                 <td>$request->type</td>
                                 <td>$request->description</td>
+                                <td>$request->comments</td>
                                 <td>$request->neededBy</td>
                                 <td><button onclick='location.href=\"$approveUrl\"' type='button'>Aprrove</button></td>
                                 <td><button onclick='location.href=\"$denyUrl\"' type='button'>Deny</button></td>
@@ -79,8 +90,40 @@
                     }
                 }
             }
-            else{
-                //echo "<td colspan = 4>No requests to show!</td>";
+            if ($_SESSION['permLevel'] == 'admin'){
+                $adminQuery = "SELECT * FROM Request WHERE Approved != 0 AND UserId != '$email'";
+                if(!$adminResult = mysqli_query($conn, $adminQuery)){
+                    mysqli_error($conn);
+                    exit();
+                }
+                while($adminRow = $adminResult->fetch_assoc()){
+                    $id = $adminRow['Id'];
+                    $user = $adminRow['UserId'];
+                    $type = $adminRow['DeviceType'];
+                    $description = $adminRow['Description'];
+                    $comments = $adminRow['Comments'];
+                    $neededBy = $adminRow['NeededBy'];
+                    $nameQuery = "SELECT FirstName, LastName FROM User WHERE Email = '$user'";
+                    if(!$nameResult = mysqli_query($conn, $nameQuery)){
+                        echo mysqli_error($conn);
+                        exit();
+                    }
+                    $nameRow = $nameResult->fetch_assoc();
+                    $first = $nameRow['FirstName'];
+                    $last = $nameRow['LastName'];
+                    echo"
+                            <tr>
+                                <td>$id</td>
+                                <td>$first $last</td>
+                                <td>$type</td>
+                                <td>$description</td>
+                                <td>$comments</td>
+                                <td>$neededBy</td>
+                                <td><button onclick='location.href=\"closeRequest.php?id=$id\"' type='button'>Close Request</button></td>
+                                <td/>
+                            </tr>
+                        ";
+                }
             }
             mysqli_close($conn);
         ?>
